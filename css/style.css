@@ -1,11 +1,6 @@
-@font-face {
-    font-family: "Cooper-Hewitt";
-    src: url(../music-emotions-survey/fonts/CooperHewitt-book.otf);
-}
-
 #survey {
 width: 75%;
-font-family: "Cooper-Hewitt";
+font-family: 'Ubuntu', sans-serif;
 margin-left: auto;
 margin-right: auto;
 height: 75%;
