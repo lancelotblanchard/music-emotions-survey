@@ -51,7 +51,7 @@
 	$("body").on("submit", "#form", function(){
 		$.ajax({
 						type: 'POST',
-				    url: 'http://music-emotions-survey-php.herokuapp.com/post.php',
+				    url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
 				    crossDomain: true,
 				    data: "emotions-values="+$("#emotions-values").val(),
 				    dataType: 'json',
