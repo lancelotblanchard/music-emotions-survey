@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "Cooper-Hewitt";
+    src: url(../fonts/CooperHewitt-book.otf);
+}
+
+#enquete {
+width: 75%;
+font-family: "Cooper-Hewitt";
+margin-left: auto;
+margin-right: auto;
+height: 75%;
+border-radius: 25px;
+text-align: center;
+display: table;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffdaaa+0,f9ad4f+100 */
+background: #ffdaaa; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffdaaa 0%, #f9ad4f 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #ffdaaa 0%,#f9ad4f 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #ffdaaa 0%,#f9ad4f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdaaa', endColorstr='#f9ad4f',GradientType=0 ); /* IE6-9 */
+box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+}
+
+#enquete-content {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#enquete-content h1{
+	text-shadow: 2px 2px 8px grey;
+}
+#emotions-field {
+	background-color: white;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}
