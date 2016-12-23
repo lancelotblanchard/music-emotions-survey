@@ -15,22 +15,21 @@
 
 	</head>
 	<body>
-		<div id="enquete">
-			<div id="enquete-content">
+		<div id="survey">
+			<div id="survey-content">
 
 			</div>
 		</div>
-		<ol id="new-projects"></ol>
 
 	<script>
 	$(document).ready(function(){
 	var progress=1;
-	$( "#enquete-content" ).load( "survey-content.html #enquete-content-"+progress+"" );
+	$( "#survey-content" ).load( "survey-content.html #survey-content-"+progress+"" );
 	progress++;
 	$("body").on('click', '#click-next', function(){
-		$('#enquete-content').fadeOut('slow', function(){
-    		$('#enquete-content').load("survey-content.html #enquete-content-"+progress+"", function(){
-        		$('#enquete-content').fadeIn('slow');
+		$('#survey-content').fadeOut('slow', function(){
+    		$('#survey-content').load("survey-content.html #survey-content-"+progress+"", function(){
+        		$('#survey-content').fadeIn('slow');
 			if(progress==1){ progress=2;} else{progress=1;}
    			});
    			$.getScript('javascript/fieldscript.js');

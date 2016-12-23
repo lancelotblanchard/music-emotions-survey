@@ -3,7 +3,7 @@
     src: url(../fonts/CooperHewitt-book.otf);
 }
 
-#enquete {
+#survey {
 width: 75%;
 font-family: "Cooper-Hewitt";
 margin-left: auto;
@@ -21,12 +21,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdaaa', end
 box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
 }
 
-#enquete-content {
+#survey-content {
 	display: table-cell;
 	vertical-align: middle;
 }
 
-#enquete-content h1{
+#survey-content h1{
 	text-shadow: 2px 2px 8px grey;
 }
 #emotions-field {
