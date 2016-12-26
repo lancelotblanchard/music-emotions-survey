@@ -57,10 +57,10 @@
 						type: 'POST',
 				    url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
 				    crossDomain: true,
-				    data: "emotions-values="+$("#emotions-values").val(),
+				    data: "emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
 				    dataType: 'json',
 				    success: function(responseData, textStatus, jqXHR) {
-								alert("OK:"+responseData.values);
+								alert(responseData.values+" and "+responseData.known);
 				    },
 				    error: function (responseData, textStatus, errorThrown) {
 				        alert('POST failed.');
