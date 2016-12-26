@@ -17,7 +17,7 @@
 
 		<!-- Ubuntu font -->
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-		
+
 	</head>
 	<body>
 		<!--Div to appear upon dimmed DIV-->
@@ -40,7 +40,7 @@
         		$('#survey-content').fadeIn('slow');
 			if(progress==1){ progress=2;} else{progress=1;}
    			});
-   			$.getScript('javascript/fieldscript.js');
+   			$.getScript('javascript/survey-content-script.js');
 		});
 	});
 	$(document)
@@ -66,6 +66,25 @@
 					});
 					return false;
 	});
+
+	function shuffle(array) {
+	  var currentIndex = array.length, temporaryValue, randomIndex;
+
+	  // While there remain elements to shuffle...
+	  while (0 !== currentIndex) {
+
+	    // Pick a remaining element...
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+
+	    // And swap it with the current element.
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+
+	  return array;
+	}
 	});
 	</script>
 	</body>

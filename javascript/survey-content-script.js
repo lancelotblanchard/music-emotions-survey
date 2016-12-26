@@ -13,4 +13,8 @@ $(function(){
 	singleField: true,
 	singleFieldNode: $('#emotions-values')
 	});
+
+	var list_music=['jsb_ags','lvb_s72'];
+	var progress=$('#survey > div > div').attr('id').split("-")[2];
+	$("#music_player").attr("src", "music/"+list_music[progress-2]+".mp3");
 });
