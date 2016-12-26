@@ -24,6 +24,7 @@
 		<img id="loading" src="images/ajax-loader.gif" alt="Loading..." height="20" width="20">
 
 		<div id="survey">
+				<progress id="progress-bar" value="0" max="10"></progress>
 			<div id="survey-content">
 
 			</div>
@@ -41,6 +42,7 @@
 			if(progress==1){ progress=2;} else{progress=1;}
    			});
    			$.getScript('javascript/survey-content-script.js');
+				$("#progress-bar").attr("value", progress-1);
 		});
 	});
 	$(document)
