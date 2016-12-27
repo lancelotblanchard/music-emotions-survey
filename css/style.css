@@ -25,6 +25,12 @@ box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
 	vertical-align: middle;
 }
 
+#music-list-html {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
 #survey-content h1{
 	text-shadow: 2px 2px 8px grey;
 }

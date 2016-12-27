@@ -24,7 +24,7 @@
 		<img id="loading" src="images/ajax-loader.gif" alt="Loading..." height="20" width="20">
 
 		<div id="survey">
-				<progress id="progress-bar" value="0" max="10"></progress>
+				<progress id="progress-bar" value="0" max="9"></progress>
 			<div id="survey-content">
 
 				<!-- DIV INTRO -->
@@ -52,7 +52,9 @@
 				<!-- DIV END -->
 				<div id="survey-content-end">
 					<h1>Thank you</h1>
-					<p>END</p>
+					<p><a href="javascript:void(0)" id="seeListMusic">See the list of musics</a></p>
+					<ul id="music-list-html">
+					</ul>
 				</div>
 
 			</div>
@@ -68,12 +70,27 @@
 			var progress=1;
 
 			//Music list and shuffled list.
-			var list_music=['asdg_ftsombaf','b_s2','c_xy','cc_o','css_dm','dl_ritd','ee_pac','gd_sj','gg_rib','jc_gs','jc_oos','jsb_ags','jt_cstf','jw_oa','lb_s72','m_ctk','m_ste','mo_tb','rw_ms','s_b','tc_ms','tdbq_bralt','wam_ps141'];
-			var music=shuffle(list_music);
+			var list_music=['asdg_ftsombaf','b_s2','c_xy','cc_o','css_dm','dl_ritd','ee_pac1','gd_sj','gg_rib','jc_gs','jc_oos','jsb_ags','jt_cstf','jw_oa','lvb_s72','m_ctk','m_ste','mo_tb','rw_ms','s_b','tc_ms','tdbq_bralt','wam_ps141'];
+			var list_music_shuffled=shuffle(list_music).slice(0,8);
+
+			var MusicType = function(){};
+			MusicType.prototype = {
+			    id: null,
+			    title: null,
+					artist: null,
+					youtube: null
+			};
+
+			var music = [];
+			for (var i = 0; i<8; i++){
+				var element = new MusicType();
+				element.id=list_music_shuffled[i];
+				music.push(element);
+			}
 
 			//Refresh Audio link
 			$("#refreshAudio").click(function(){
-				$("#music_player").prop("src", "music/"+music[progress-2]+".mp3");
+				$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
 			});
 
 
@@ -83,10 +100,10 @@
 			'Gêne', 'Lassitude', 'Surprise', 'Terreur', 'Calme'];
 
 			$('#emotions-field').tagit({
-			availableTags: sampleTagsFrench,
-			// This will make Tag-it submit a single form value, as a comma-delimited field.
-			singleField: true,
-			singleFieldNode: $('#emotions-values')
+				availableTags: sampleTagsFrench,
+				// This will make Tag-it submit a single form value, as a comma-delimited field.
+				singleField: true,
+				singleFieldNode: $('#emotions-values')
 			});
 
 			//Ajax Loading
@@ -103,10 +120,10 @@
 				progress++;
 				$('#survey-content-intro').fadeOut('slow', function(){
 					//Text Extract
-					$('#extract-number').text("Extrait "+(progress-1));
+					$('#extract-number').text("Extrait "+(progress-1)+"/8");
 
 					//Prepare Music
-					$("#music_player").prop("src", "music/"+music[progress-2]+".mp3");
+					$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
 
 		    	$('#survey-content-music').fadeIn('slow', function(){
 						$("#progress-bar").prop("value", progress-1);
@@ -126,14 +143,14 @@
 					dataType: 'json',
 					success: function(responseData, textStatus, jqXHR) {
 						//If Music left: Recreate page with new Music
-						if(progress<10){
+						if(progress<9){
 							progress++;
 							$('#survey-content-music').fadeOut('slow', function(){
 								//Text Extract
-								$('#extract-number').text("Extrait "+(progress-1));
+								$('#extract-number').text("Extrait "+(progress-1)+"/8");
 
 								//Prepare Music
-								$("#music_player").prop("src", "music/"+music[progress-2]+".mp3");
+								$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
 
 								//Erase data of previous page
 								$("#known").prop("checked", false);
@@ -160,6 +177,32 @@
 				event.preventDefault();
 			});
 
+			//Link: See the list of music
+			$("#seeListMusic").click(function(){
+				//AJAX Request
+				$.ajax({
+					type: "GET",
+					url: "music/music.xml",
+					dataType: "xml",
+					success: function(xml){
+						//Fill music array with elements from xml
+						for (var i = 0; i<8; i++){
+							var element = $(xml).find('music[id="'+music[i].id+'"]');
+							music[i].title=element.find("title").text();
+							music[i].artist=element.find("artist").text();
+							music[i].youtube=element.find("youtube").text();
+						}
+
+						//Generate list
+						$listSelector = $("#music-list-html")
+						$.each(music, function(i) {
+						    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
+						});
+
+					}
+				});
+			});
+
 
 		});
 
@@ -182,69 +225,29 @@
 			return array;
 		}
 		</script>
-<!-- RENEW
-	<script>
-	$(document).ready(function(){
-	var progress=1;
-	$( "#survey-content" ).load( "survey-content.html #survey-content-"+progress+"" );
-	$("body").on('click', '#click-next', function(){
-		progress++;
-		$('#survey-content').fadeOut('slow', function(){
-    		$('#survey-content').load("survey-content.html #survey-content-"+progress+"", function(){
-        		$('#survey-content').fadeIn('slow');
-   			});
-   			$.getScript('javascript/survey-content-script.js');
-				$("#progress-bar").attr("value", progress-1);
-		});
-	});
-	$(document)
-  .ajaxStart(function () {
-		$("#loading").css("opacity",1).fadeIn(150);
-  })
-  .ajaxStop(function () {
-		$("#loading").fadeOut(150);
-			/*progress++;
-			$('#survey-content').fadeOut('slow', function(){
-					if(progress<10){
-		    		$('#survey-content').load("survey-content.html #survey-content-2", function(){
-		        		$('#survey-content').fadeIn('slow');
-		   			});
-					} else {
-						$('#survey-content').load("survey-content.html #survey-content-"+progress+"", function(){
-		        		$('#survey-content').fadeIn('slow');
-		   			});
-					}
-	   			$.getScript('javascript/survey-content-script.js');
-					$("#progress-bar").attr("value", progress-1);
-			});*/
-  });
-	$("body").on("submit", "#form", function(){
+		<!--
+		<script>
 		$.ajax({
-						type: 'POST',
-				    //url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
-						url: 'http://localhost:8888/Other/enquete-php/post.php',
-						crossDomain: true,
-				    data: "emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
-				    dataType: 'json',
-				    success: function(responseData, textStatus, jqXHR) {
-								alert(responseData.values+" and "+responseData.known);
-								progress++;
-								$('#survey-content').fadeOut('slow', function(){
-							    		$('#survey-content').load("survey-content.html #survey-content-"+progress, function(){
-							        		$('#survey-content').fadeIn('slow');
-							   			});
-						   			$.getScript('javascript/survey-content-script.js');
-										$("#progress-bar").attr("value", progress-1);
-								});
-				    },
-				    error: function (responseData, textStatus, errorThrown) {
-				        alert('POST failed.');
-				    }
-					});
-					return false;
-	});
-
-});
-	</script>-->
+			type: "GET",
+			url: "music.xml",
+			dataType: "xml",
+			success: function(xml){
+				$(xml).find('music').each(function(){
+					var id = $(this).attr('id');
+					var title = $(this).find('title').text();
+					var url = $(this).find('url').text();
+		                            $('<div class="items" id="link_' + id + '"></div>').html('<a href="' + url + '">' + title + '</a>').appendTo('#Div_XML');
+		                            $(this).find('desc').each(
+		                                            function()
+		                                            {
+		                                                var brief = $(this).find('brief').text();
+		                                                var long = $(this).find('long').text();
+		                                                $('<div class="brief"></div>').html(brief).appendTo('#link_'+id);
+		                                                $('<div class="long"></div>').html(long).appendTo('#link_'+id);
+		                                            });
+		                          });
+		                      }
+		        });
+					</script>-->
 	</body>
 </html>
