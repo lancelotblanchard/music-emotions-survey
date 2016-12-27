@@ -136,8 +136,8 @@
 					//POST AJAX
 					$.ajax({
 						type: 'POST',
-						//url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
-						url: 'http://localhost:8888/Other/enquete-php/post.php',
+						url: 'http://music-emotions-survey-php.atwebpages.com/post.php',
+						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
 						data: "name="+$("#name").val(),
 						dataType: 'json',
@@ -173,10 +173,10 @@
 					//POST AJAX
 					$.ajax({
 						type: 'POST',
-						//url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
-						url: 'http://localhost:8888/Other/enquete-php/post.php',
+						url: 'http://music-emotions-survey-php.atwebpages.com/post.php',
+						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
-						data: "emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
+						data: "name="+name+"&extract="+(progress-1)+"&id="+music[progress-2].id+"emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
 						dataType: 'json',
 						success: function(responseData, textStatus, jqXHR) {
 							//If Music left: Recreate page with new Music
