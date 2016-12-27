@@ -176,7 +176,7 @@
 						url: 'http://music-emotions-survey-php.atwebpages.com/post.php',
 						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
-						data: "name="+name+"&extract="+(progress-1)+"&id="+music[progress-2].id+"emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
+						data: "name="+name+"&extract="+(progress-1)+"&id="+music[progress-2].id+"&emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
 						dataType: 'json',
 						success: function(responseData, textStatus, jqXHR) {
 							//If Music left: Recreate page with new Music
@@ -263,29 +263,5 @@
 			return array;
 		}
 		</script>
-		<!--
-		<script>
-		$.ajax({
-			type: "GET",
-			url: "music.xml",
-			dataType: "xml",
-			success: function(xml){
-				$(xml).find('music').each(function(){
-					var id = $(this).attr('id');
-					var title = $(this).find('title').text();
-					var url = $(this).find('url').text();
-		                            $('<div class="items" id="link_' + id + '"></div>').html('<a href="' + url + '">' + title + '</a>').appendTo('#Div_XML');
-		                            $(this).find('desc').each(
-		                                            function()
-		                                            {
-		                                                var brief = $(this).find('brief').text();
-		                                                var long = $(this).find('long').text();
-		                                                $('<div class="brief"></div>').html(brief).appendTo('#link_'+id);
-		                                                $('<div class="long"></div>').html(long).appendTo('#link_'+id);
-		                                            });
-		                          });
-		                      }
-		        });
-					</script>-->
 	</body>
 </html>
