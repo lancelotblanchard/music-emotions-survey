@@ -238,7 +238,7 @@
 							//Generate list
 							$listSelector = $("#music-list-html")
 							$.each(music, function(i) {
-							    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
+							    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a target="_blank" href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
 							});
 
 						}
