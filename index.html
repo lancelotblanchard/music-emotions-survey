@@ -160,7 +160,7 @@
 							});
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					alert('POST failed. Please retry.');
+	  					alert('POST failed. Maybe the name entered is already taken?');
 						}
 					});
 				}
@@ -211,7 +211,7 @@
 							}
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					alert('POST failed. Please retry.');
+	  					alert('POST failed.');
 						}
 					});
 				}
@@ -243,7 +243,7 @@
 
 						}
 					});
-				} else {}
+				} else { list_displayed=true; }
 				});
 		});
 
