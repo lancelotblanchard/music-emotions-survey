@@ -157,7 +157,9 @@
 							});
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					alert('POST failed. Please retry.');
+	  					//alert('POST failed. Please retry.');
+							//DEBUG:
+							alert('Error: '+textStatus+' and '+errorThrown);
 						}
 					});
 				}
@@ -208,7 +210,9 @@
 							}
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					alert('POST failed. Please retry.');
+	  					//alert('POST failed. Please retry.');
+							//DEBUG:
+							alert('Error: '+textStatus+' and '+errorThrown);
 						}
 					});
 				}
