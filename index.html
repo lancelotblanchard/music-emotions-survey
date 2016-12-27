@@ -34,12 +34,11 @@
 	$(document).ready(function(){
 	var progress=1;
 	$( "#survey-content" ).load( "survey-content.html #survey-content-"+progress+"" );
-	progress++;
 	$("body").on('click', '#click-next', function(){
+		progress++;
 		$('#survey-content').fadeOut('slow', function(){
     		$('#survey-content').load("survey-content.html #survey-content-"+progress+"", function(){
         		$('#survey-content').fadeIn('slow');
-			if(progress==1){ progress=2;} else{progress=1;}
    			});
    			$.getScript('javascript/survey-content-script.js');
 				$("#progress-bar").attr("value", progress-1);
@@ -51,16 +50,39 @@
   })
   .ajaxStop(function () {
 		$("#loading").fadeOut(150);
+			/*progress++;
+			$('#survey-content').fadeOut('slow', function(){
+					if(progress<10){
+		    		$('#survey-content').load("survey-content.html #survey-content-2", function(){
+		        		$('#survey-content').fadeIn('slow');
+		   			});
+					} else {
+						$('#survey-content').load("survey-content.html #survey-content-"+progress+"", function(){
+		        		$('#survey-content').fadeIn('slow');
+		   			});
+					}
+	   			$.getScript('javascript/survey-content-script.js');
+					$("#progress-bar").attr("value", progress-1);
+			});*/
   });
 	$("body").on("submit", "#form", function(){
 		$.ajax({
 						type: 'POST',
-				    url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
-				    crossDomain: true,
+				    //url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
+						url: 'http://localhost:8888/Other/enquete-php/post.php',
+						crossDomain: true,
 				    data: "emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
 				    dataType: 'json',
 				    success: function(responseData, textStatus, jqXHR) {
 								alert(responseData.values+" and "+responseData.known);
+								progress++;
+								$('#survey-content').fadeOut('slow', function(){
+							    		$('#survey-content').load("survey-content.html #survey-content-"+progress, function(){
+							        		$('#survey-content').fadeIn('slow');
+							   			});
+						   			$.getScript('javascript/survey-content-script.js');
+										$("#progress-bar").attr("value", progress-1);
+								});
 				    },
 				    error: function (responseData, textStatus, errorThrown) {
 				        alert('POST failed.');
@@ -69,24 +91,6 @@
 					return false;
 	});
 
-	function shuffle(array) {
-	  var currentIndex = array.length, temporaryValue, randomIndex;
-
-	  // While there remain elements to shuffle...
-	  while (0 !== currentIndex) {
-
-	    // Pick a remaining element...
-	    randomIndex = Math.floor(Math.random() * currentIndex);
-	    currentIndex -= 1;
-
-	    // And swap it with the current element.
-	    temporaryValue = array[currentIndex];
-	    array[currentIndex] = array[randomIndex];
-	    array[randomIndex] = temporaryValue;
-	  }
-
-	  return array;
-	}
 	});
 	</script>
 	</body>

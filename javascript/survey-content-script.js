@@ -14,7 +14,28 @@ $(function(){
 	singleFieldNode: $('#emotions-values')
 	});
 
-	var list_music=['jsb_ags','lvb_s72'];
-	var progress=$('#survey > div > div').attr('id').split("-")[2];
-	$("#music_player").attr("src", "music/"+list_music[progress-2]+".mp3");
+
+	function shuffle(array) {
+		var currentIndex = array.length, temporaryValue, randomIndex;
+
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
+
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+
+		return array;
+	}
+
+	var list_music=['asdg_ftsombaf','b_s2','c_xy','cc_o','css_dm','dl_ritd','ee_pac','gd_sj','gg_rib','jc_gs','jc_oos','jsb_ags','jt_cstf','jw_oa','lb_s72','m_ctk','m_ste','mo_tb','rw_ms','s_b','tc_ms','tdbq_bralt','wam_ps141'];
+	var music=shuffle(list_music);
+	var progress=parseInt($('#survey > div > div').attr('id').split("-")[2]);
+	$("#music_player").attr("src", "music/"+music[progress-2]+".mp3");
 });
