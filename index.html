@@ -136,8 +136,8 @@
 				//POST AJAX
 				$.ajax({
 					type: 'POST',
-					//url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
-					url: 'http://localhost:8888/Other/enquete-php/post.php',
+					url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
+					//If local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 					crossDomain: true,
 					data: "emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
 					dataType: 'json',
