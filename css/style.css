@@ -25,6 +25,11 @@ box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
 	vertical-align: middle;
 }
 
+#survey-content-intro p {
+padding-right: 50px;
+padding-left:50px;
+}
+
 #music-list-html {
 	list-style-type: none;
 	padding: 0;
