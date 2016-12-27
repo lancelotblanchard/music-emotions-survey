@@ -78,6 +78,9 @@
 			//Progress var for progress bar
 			var progress=1;
 
+			//Boolean List Displayed
+			var list_displayed=false;
+
 			//Initialize Name var
 			var name="";
 
@@ -217,30 +220,31 @@
 
 			//Link: See the list of music
 			$("#seeListMusic").click(function(){
-				//AJAX Request
-				$.ajax({
-					type: "GET",
-					url: "music/music.xml",
-					dataType: "xml",
-					success: function(xml){
-						//Fill music array with elements from xml
-						for (var i = 0; i<8; i++){
-							var element = $(xml).find('music[id="'+music[i].id+'"]');
-							music[i].title=element.find("title").text();
-							music[i].artist=element.find("artist").text();
-							music[i].youtube=element.find("youtube").text();
+				if(!list_displayed){
+					//AJAX Request
+					$.ajax({
+						type: "GET",
+						url: "music/music.xml",
+						dataType: "xml",
+						success: function(xml){
+							//Fill music array with elements from xml
+							for (var i = 0; i<8; i++){
+								var element = $(xml).find('music[id="'+music[i].id+'"]');
+								music[i].title=element.find("title").text();
+								music[i].artist=element.find("artist").text();
+								music[i].youtube=element.find("youtube").text();
+							}
+
+							//Generate list
+							$listSelector = $("#music-list-html")
+							$.each(music, function(i) {
+							    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
+							});
+
 						}
-
-						//Generate list
-						$listSelector = $("#music-list-html")
-						$.each(music, function(i) {
-						    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
-						});
-
-					}
+					});
 				});
-			});
-
+			} else {}
 
 		});
 
