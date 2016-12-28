@@ -160,7 +160,9 @@
 							});
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					alert('POST failed. Maybe the name entered is already taken?');
+	  					//alert('POST failed. Maybe the name entered is already taken?');
+							//DEBUG:
+							alert(textStatus+': '+errorThrown+' ('+JSON.stringify(responseData)+')');
 						}
 					});
 				}
@@ -211,7 +213,9 @@
 							}
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					alert('POST failed.');
+	  					// alert('POST failed.');
+							//DEBUG:
+							alert(textStatus+': '+errorThrown+' ('+JSON.stringify(responseData)+')');
 						}
 					});
 				}
