@@ -145,24 +145,27 @@
 						data: "name="+$("#name").val(),
 						dataType: 'json',
 						success: function(responseData, textStatus, jqXHR) {
-							name=$("#name").val();
-							progress++;
-							$('#survey-content-intro').fadeOut('slow', function(){
-								//Text Extract
-								$('#extract-number').text("Extrait "+(progress-1)+"/8");
+							//Check if post succeeded.
+							if(responseData.status=="success"){
+								name=$("#name").val();
+								progress++;
+								$('#survey-content-intro').fadeOut('slow', function(){
+									//Text Extract
+									$('#extract-number').text("Extrait "+(progress-1)+"/8");
 
-								//Prepare Music
-								$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
+									//Prepare Music
+									$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
 
-					    	$('#survey-content-music').fadeIn('slow', function(){
-									$("#progress-bar").prop("value", progress-1);
+						    	$('#survey-content-music').fadeIn('slow', function(){
+										$("#progress-bar").prop("value", progress-1);
+									});
 								});
-							});
+							} else { //Else: display error
+								alert('Error: '+responseData.message);
+							}
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					//alert('POST failed. Maybe the name entered is already taken?');
-							//DEBUG:
-							alert(textStatus+': '+errorThrown+' ('+JSON.stringify(responseData)+')');
+	  					alert('Critical Error');
 						}
 					});
 				}
@@ -184,24 +187,29 @@
 						data: "name="+name+"&extract="+(progress-1)+"&id="+music[progress-2].id+"&emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
 						dataType: 'json',
 						success: function(responseData, textStatus, jqXHR) {
-							//If Music left: Recreate page with new Music
-							if(progress<9){
-								progress++;
-								$('#survey-content-music').fadeOut('slow', function(){
-									//Text Extract
-									$('#extract-number').text("Extrait "+(progress-1)+"/8");
+							//Check if post succeeded.
+							if(responseData.status=="success"){
+								//If Music left: Recreate page with new Music
+								if(progress<9){
+									progress++;
+									$('#survey-content-music').fadeOut('slow', function(){
+										//Text Extract
+										$('#extract-number').text("Extrait "+(progress-1)+"/8");
 
-									//Prepare Music
-									$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
+										//Prepare Music
+										$("#music_player").prop("src", "music/"+music[progress-2].id+".mp3");
 
-									//Erase data of previous page
-									$("#known").prop("checked", false);
-									$("#emotions-field").tagit('removeAll');
+										//Erase data of previous page
+										$("#known").prop("checked", false);
+										$("#emotions-field").tagit('removeAll');
 
-						    	$('#survey-content-music').fadeIn('slow', function(){
-										$("#progress-bar").prop("value", progress-1);
+							    	$('#survey-content-music').fadeIn('slow', function(){
+											$("#progress-bar").prop("value", progress-1);
+										});
 									});
-								});
+								} else { //Else: display error
+									alert('Error: '+responseData.message);
+								}
 							} //Else: Show End Page
 							else {
 								progress++;
@@ -213,9 +221,7 @@
 							}
 						},
 						error: function (responseData, textStatus, errorThrown) {
-	  					// alert('POST failed.');
-							//DEBUG:
-							alert(textStatus+': '+errorThrown+' ('+JSON.stringify(responseData)+')');
+	  					alert('Critical Error');
 						}
 					});
 				}
