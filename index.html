@@ -139,7 +139,7 @@
 					//POST AJAX
 					$.ajax({
 						type: 'POST',
-						url: 'http://music-emotions-survey-php.herokuapp.com/post.php',
+						url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
 						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
 						data: "name="+$("#name").val(),
@@ -181,7 +181,7 @@
 					//POST AJAX
 					$.ajax({
 						type: 'POST',
-						url: 'http://music-emotions-survey-php.herokuapp.com/post.php',
+						url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
 						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
 						data: "name="+name+"&extract="+(progress-1)+"&id="+music[progress-2].id+"&emotions-values="+$("#emotions-values").val()+"&known="+$("#known").is(":checked"),
