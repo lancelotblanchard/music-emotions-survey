@@ -250,10 +250,10 @@
 							$.each(music, function(i) {
 							    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a target="_blank" href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
 							});
-
+							list_displayed=true;
 						}
 					});
-				} else { list_displayed=true; }
+				} else { // Do nothing }
 				});
 		});
 
