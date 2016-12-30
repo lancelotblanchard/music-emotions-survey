@@ -207,17 +207,17 @@
 											$("#progress-bar").prop("value", progress-1);
 										});
 									});
-								} else { //Else: display error
-									alert('Error: '+responseData.message);
-								}
-							} //Else: Show End Page
-							else {
-								progress++;
-								$('#survey-content-music').fadeOut('slow', function(){
-						    	$('#survey-content-end').fadeIn('slow', function(){
-										$("#progress-bar").prop("value", progress-1);
+								} //Else: Show End Page
+								else {
+									progress++;
+									$('#survey-content-music').fadeOut('slow', function(){
+						    		$('#survey-content-end').fadeIn('slow', function(){
+											$("#progress-bar").prop("value", progress-1);
+										});
 									});
-								});
+								}
+							} else { //Else: display error
+								alert('Error: '+responseData.message);
 							}
 						},
 						error: function (responseData, textStatus, errorThrown) {
