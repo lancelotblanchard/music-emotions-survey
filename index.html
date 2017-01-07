@@ -31,15 +31,20 @@
 				<div id="survey-content-intro">
 					<h1>Bonjour et bievenue!</h1>
 					<p>Cette enquête a pour but de tenter de trouver un lien entre les propriété théoriques d'une musique et les émotions qu'elle procure.
-						<br />Durant ce sondage, vous allez être invité à écouter 8 extraits de musiques de différents styles pour ensuite indiquer le plus grand nombre possible de <i>mots-clés</i> qui décrivent les émotions que vous avez ressenties à l'écoute de cet extrait.
+						<br />Durant ce sondage, vous allez être invité à écouter <b>8 extraits</b> de musiques de différents styles pour ensuite indiquer le plus grand nombre possible de <i>mots-clés</i> qui décrivent les émotions que vous avez ressenties à l'écoute de cet extrait.
 						<br />Vos réponses sont ensuites stockées dans une base de données puis mise à disposition libre (après avoir été anonymisées).
 						<br />Le nom des musiques que vous entendrez ainsi que le lien vers la vidéo de laquelle provient l'extrait vous seront indiqués à la fin de l'enquête.
 						<br /><i>Pour plus d'informations, <a href="https://www.github.com/lancelotbla/music-emotions-survey/">cliquez ici.</a></i>
-						<br/><br/><b>Pour commencer, veuillez renseigner votre nom et cliquer sur "Suivant"</b></p>
-
+						<!-- Link to change -->
+						<br/><br/><b>Pour commencer, veuillez renseigner quelques informations puis cliquez sur "Suivant".</b></p>
+						<br />
 						<form id="form-intro" action="">
 							<label for="name">Nom : </label><input type="text" name="name" id="name" required />
 							<br/><br />
+							<input name="musician" id="musician" type="checkbox" /><label for="musician"><i>Je suis musicien/Je pratique la musique</i></label>
+							<br />
+							<input name="listener" id="listener" type="checkbox" /><label for="listener"><i>J'écoute régulièrement de la musique.</i></label>
+							<br /><br />
 							<input type="submit" value="Suivant" />
 						</form>
 				</div>
@@ -142,7 +147,7 @@
 						url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
 						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
-						data: "name="+$("#name").val(),
+						data: "name="+$("#name").val()+"&musician="+$("musician").is(":checked")+"&listener="+$("listener").is(":checked"),
 						dataType: 'json',
 						success: function(responseData, textStatus, jqXHR) {
 							//Check if post succeeded.
