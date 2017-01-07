@@ -21,7 +21,7 @@
 		<!-- Dynamic Height iFrame -->
 		<script>
 			function adjust_iframe_height(){
-			    var actual_height = document.getElementById('survey-content').scrollHeight;
+			    var actual_height = document.getElementById('survey').scrollHeight;
 			    parent.postMessage(actual_height,"*");
 			    //* = No domain restriction on hosting pages
 			}
