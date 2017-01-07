@@ -20,14 +20,14 @@
 
 		<!-- Dynamic Height iFrame -->
 		<script>
-			function adjust_iframe_height(id){
-			    var actual_height = document.getElementById(id).scrollHeight;
+			function adjust_iframe_height(){
+			    var actual_height = document.getElementById('survey-content').scrollHeight;
 			    parent.postMessage(actual_height,"*");
 			    //* = No domain restriction on hosting pages
 			}
 		</script>
 	</head>
-	<body onload="adjust_iframe_height('survey-content-intro');">
+	<body onload="adjust_iframe_height();">
 		<!-- Loading gif -->
 		<img id="loading" src="../images/ajax-loader.gif" alt="Loading..." height="20" width="20">
 
@@ -175,7 +175,7 @@
 										$("#progress-bar").prop("value", progress-1);
 									});
 								});
-								adjust_iframe_height('survey-content-music');
+								adjust_iframe_height();
 							} else { //Else: display error
 								alert('Error: '+responseData.message);
 							}
@@ -267,7 +267,7 @@
 							    $listSelector.append('<li><b>Extract '+(i+1)+':</b> <a target="_blank" href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
 							});
 							list_displayed=true;
-							adjust_iframe_height('survey-content-end');
+							adjust_iframe_height();
 						}
 					});
 				} else { // Do nothing
