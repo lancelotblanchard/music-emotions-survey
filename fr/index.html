@@ -175,6 +175,7 @@
 										$("#progress-bar").prop("value", progress-1);
 									});
 								});
+								adjust_iframe_height();
 							} else { //Else: display error
 								alert('Error: '+responseData.message);
 							}
@@ -266,6 +267,7 @@
 							    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a target="_blank" href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
 							});
 							list_displayed=true;
+							adjust_iframe_height();
 						}
 					});
 				} else { // Do nothing
