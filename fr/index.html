@@ -149,7 +149,7 @@
 						url: 'https://music-emotions-survey-php.herokuapp.com/post.php',
 						//if local: url: 'http://localhost:8888/Other/enquete-php/post.php',
 						crossDomain: true,
-						data: "name="+$("#name").val()+"&musician="+$("musician").is(":checked")+"&listener="+$("listener").is(":checked"),
+						data: "name="+$("#name").val()+"&musician="+$("#musician").is(":checked")+"&listener="+$("#listener").is(":checked"),
 						dataType: 'json',
 						success: function(responseData, textStatus, jqXHR) {
 							//Check if post succeeded.

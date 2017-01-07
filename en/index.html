@@ -158,7 +158,7 @@
 								progress++;
 								$('#survey-content-intro').fadeOut('slow', function(){
 									//Text Extract
-									$('#extract-number').text("Extrait "+(progress-1)+"/8");
+									$('#extract-number').text("Extract "+(progress-1)+"/8");
 
 									//Prepare Music
 									$("#music_player").prop("src", "../music/"+music[progress-2].id+".mp3");
@@ -201,7 +201,7 @@
 									progress++;
 									$('#survey-content-music').fadeOut('slow', function(){
 										//Text Extract
-										$('#extract-number').text("Extrait "+(progress-1)+"/8");
+										$('#extract-number').text("Extract "+(progress-1)+"/8");
 
 										//Prepare Music
 										$("#music_player").prop("src", "../music/"+music[progress-2].id+".mp3");
@@ -255,7 +255,7 @@
 							//Generate list
 							$listSelector = $("#music-list-html")
 							$.each(music, function(i) {
-							    $listSelector.append('<li><b>Extrait '+(i+1)+':</b> <a target="_blank" href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
+							    $listSelector.append('<li><b>Extract '+(i+1)+':</b> <a target="_blank" href="https://youtu.be/'+music[i].youtube+'">'+music[i].artist+' - '+music[i].title+'</a></li>');
 							});
 							list_displayed=true;
 						}
